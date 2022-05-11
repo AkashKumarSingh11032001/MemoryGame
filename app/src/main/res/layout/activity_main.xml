@@ -8,8 +8,8 @@
 
     <LinearLayout
         android:id="@+id/llGameInfo"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
         android:background="?attr/colorSecondaryVariant"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -53,8 +53,14 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvBoard"
+        app.layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        app.layout_constraintBottom_toTopOf="@+id/llGameInfo"
+        app.spanCount="2"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:overScrollMode="never"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
