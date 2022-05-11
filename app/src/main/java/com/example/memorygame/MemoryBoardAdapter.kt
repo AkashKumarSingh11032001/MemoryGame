@@ -5,22 +5,36 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.view.menu.MenuView
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
+import kotlin.math.min
 
 class MemoryBoardAdapter(private val context: Context, private val numPieces: Int) :
-    RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+    RecyclerView.Adapter<MemoryBoardAdapter.ViewHolder>() {
 
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        val cardWidth = parent.width / 2
+        val cardHeight = parent.height / 4
+        val cardSideLength = min(cardHeight,cardWidth)
 
+        val view = LayoutInflater.from(context).inflate(R.layout.memory_card,parent,false)
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        LayoutInflater.from(context).inflate(R.layout.memory_card,parent,false)
+        val layoutParams = view.findViewById<CardView>(R.id.cardView).layoutParams
+        layoutParams.width = cardSideLength
+        layoutParams.height = cardSideLength
+
+        return ViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        TODO("Not yet implemented")
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        holder.bind(position)
     }
 
     override fun getItemCount() = numPieces
 
-    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
+    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
+        fun bind(position: Int){
+//            no-opt
+        }
+    }
 }
